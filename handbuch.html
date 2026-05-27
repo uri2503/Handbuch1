@@ -253,6 +253,7 @@ main{padding:12px 14px 90px}
       <div id="vSt"></div>
       <div class="viw" id="vImgW"></div>
       <div class="vocr"><h4>OCR-Text</h4><div class="vocr-txt" id="vOcr">—</div></div>
+      <button onclick="closeOv('ovView')" style="width:100%;margin-top:14px;padding:14px;background:#1a1410;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer">✕ Schließen</button>
     </div>
   </div>
 </div>
@@ -535,9 +536,15 @@ function renderViewer(){
 function navPage(d){var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;curPidx=Math.max(0,Math.min(book.pages.length-1,curPidx+d));renderViewer();}
 async function savePgTitle(){var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;book.pages[curPidx].title=document.getElementById('vTit').value;await dbPut(book);renderPages();}
 
-var swX=0;
-document.querySelector('.sheet.full').addEventListener('touchstart',function(e){swX=e.touches[0].clientX;},{passive:true});
-document.querySelector('.sheet.full').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-swX;if(Math.abs(dx)<60)return;navPage(dx<0?1:-1);},{passive:true});
+var swX=0, swY=0;
+document.querySelector('.vbody').addEventListener('touchstart',function(e){swX=e.touches[0].clientX;swY=e.touches[0].clientY;},{passive:true});
+document.querySelector('.vbody').addEventListener('touchend',function(e){
+  var dx=e.changedTouches[0].clientX-swX;
+  var dy=Math.abs(e.changedTouches[0].clientY-swY);
+  if(dy>40)return; // vertical scroll - ignore
+  if(Math.abs(dx)<80)return;
+  navPage(dx<0?1:-1);
+},{passive:true});
 
 // ── OCR ───────────────────────────────────────────────────
 var tR=false;
