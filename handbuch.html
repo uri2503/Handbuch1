@@ -4,30 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>Handbuch Archiv</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,sans-serif;background:#f5f0e8;color:#1a1410;min-height:100vh}
-
-/* SETUP SCREEN */
-#setup{position:fixed;inset:0;background:#1a1410;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center}
-#setup h1{font-size:28px;color:white;margin-bottom:8px}
-#setup .sub{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:40px}
-.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;margin-bottom:14px;text-align:left;width:100%;max-width:400px}
-.step-num{display:inline-block;width:26px;height:26px;background:#c8391a;color:white;border-radius:50%;font-size:13px;font-weight:700;text-align:center;line-height:26px;margin-bottom:10px}
-.step-title{font-size:15px;font-weight:700;color:white;margin-bottom:4px}
-.step-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
-.step-desc b{color:white}
-#btn-ok{margin-top:10px;width:100%;max-width:400px;padding:16px;background:#c8391a;color:white;border:none;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer}
-
-/* HEADER */
-header{position:sticky;top:0;z-index:100;background:#1a1410;padding:13px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+header{position:sticky;top:0;z-index:100;background:#1a1410;padding:13px 18px;display:flex;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .logo{font-size:16px;font-weight:700;color:white}.logo b{color:#c8391a}
-.hbtn{padding:7px 13px;border-radius:10px;border:none;font-size:12px;font-weight:700;cursor:pointer}
-.hbtn-acc{background:#c8391a;color:white;margin-left:auto}
-.hbtn-sec{background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
-
-/* SEARCH */
+.hbtn{padding:7px 13px;border-radius:10px;border:none;font-size:12px;font-weight:700;cursor:pointer;margin-left:auto;background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
 .search-wrap{background:#ede7d8;padding:10px 14px;border-bottom:1px solid #d4c9b4;position:sticky;top:58px;z-index:90}
 .sbox{display:flex;align-items:center;background:white;border:1.5px solid #d4c9b4;border-radius:20px;padding:0 12px;gap:8px;margin-bottom:8px}
 .sbox input{flex:1;border:none;outline:none;font-size:15px;padding:9px 0;background:transparent;color:#1a1410}
@@ -35,12 +19,8 @@ header{position:sticky;top:0;z-index:100;background:#1a1410;padding:13px 18px;di
 .chips::-webkit-scrollbar{display:none}
 .chip{white-space:nowrap;padding:4px 11px;border-radius:16px;font-size:12px;font-weight:600;border:1.5px solid #d4c9b4;background:white;color:#4a5568;cursor:pointer;flex-shrink:0}
 .chip.on{background:#c8391a;border-color:#c8391a;color:white}
-
-/* STATS */
 .stats{padding:7px 14px;display:flex;gap:8px;font-size:12px;color:#4a5568;border-bottom:1px solid #d4c9b4}
 .stats b{color:#1a1410}
-
-/* LIBRARY */
 main{padding:12px 14px 90px}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .topbar h2{font-size:17px;font-weight:700}
@@ -65,23 +45,18 @@ main{padding:12px 14px 90px}
 .tag{font-size:9px;padding:2px 6px;border-radius:8px;background:#ede7d8;color:#4a5568;font-weight:600}
 .tagr{font-size:9px;padding:2px 6px;border-radius:8px;background:#fde8e4;color:#c8391a;font-weight:600}
 .empty{text-align:center;padding:50px 20px}
-.empty div{font-size:44px;margin-bottom:12px}
-
-/* FAB */
+.empty-icon{font-size:44px;margin-bottom:12px}
 .fab{position:fixed;bottom:22px;right:18px;width:52px;height:52px;border-radius:50%;background:#c8391a;box-shadow:0 4px 16px rgba(200,57,26,.4);font-size:26px;color:white;border:none;cursor:pointer;z-index:20;display:flex;align-items:center;justify-content:center}
-
-/* OVERLAY */
 .ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:none;align-items:flex-end}
 .ov.open{display:flex}
 .sheet{width:100%;background:white;border-radius:16px 16px 0 0;max-height:92vh;display:flex;flex-direction:column;overflow:hidden}
 .sheet.full{max-height:100vh}
-.hdl{width:36px;height:4px;border-radius:2px;background:#d4c9b4;margin:12px auto 14px}
+.hdl{width:36px;height:4px;border-radius:2px;background:#d4c9b4;margin:12px auto 14px;flex-shrink:0}
 .sc{overflow-y:auto;flex:1;padding:0 16px 24px;-webkit-overflow-scrolling:touch}
 .sh-title{font-size:20px;font-weight:700;margin-bottom:14px}
 .fg{margin-bottom:12px}
 .fg label{display:block;font-size:10px;font-weight:700;color:#4a5568;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
-.fg input,.fg select,.fg textarea{width:100%;padding:11px 12px;border:1.5px solid #d4c9b4;border-radius:8px;font-size:16px;color:#1a1410;background:white;outline:none;-webkit-appearance:none;font-family:-apple-system,sans-serif}
-.fg textarea{resize:vertical;min-height:80px}
+.fg input,.fg select{width:100%;padding:11px 12px;border:1.5px solid #d4c9b4;border-radius:8px;font-size:16px;color:#1a1410;background:white;outline:none;-webkit-appearance:none;font-family:-apple-system,sans-serif}
 .fg input:focus,.fg select:focus{border-color:#c8391a}
 .uz{border:2px dashed #d4c9b4;border-radius:10px;padding:20px 14px;text-align:center;cursor:pointer;background:#f5f0e8}
 .uz .uzi{font-size:24px;margin-bottom:4px}
@@ -92,8 +67,6 @@ main{padding:12px 14px 90px}
 .cols{display:flex;gap:8px;flex-wrap:wrap}
 .col{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent}
 .col.on{border-color:#1a1410}
-
-/* DETAIL */
 .dcov{border-radius:10px;padding:20px;text-align:center;margin-bottom:14px}
 .dc-sub{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:4px}
 .dc-t{font-size:17px;font-weight:700;color:white}
@@ -121,8 +94,6 @@ main{padding:12px 14px 90px}
 .dact{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #d4c9b4;background:white;flex-shrink:0}
 .ab{flex:1;padding:12px 8px;background:#1a1410;color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
 .ab.del{background:#e53e3e;flex:0;padding:12px 16px}
-
-/* VIEWER */
 .vtb{padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #d4c9b4;background:white;flex-shrink:0}
 .vted{flex:1;font-weight:600;font-size:15px;border:none;outline:none;background:transparent;color:#1a1410;font-family:-apple-system,sans-serif}
 .vpn{font-size:10px;color:#4a5568;background:#f5f0e8;padding:3px 8px;border-radius:12px;flex-shrink:0}
@@ -139,55 +110,26 @@ main{padding:12px 14px 90px}
 .vocr h4{font-size:9px;font-weight:700;color:#8a97a8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
 .vocr-txt{font-size:12px;line-height:1.8;white-space:pre-wrap;font-family:monospace}
 .oprog{display:flex;align-items:center;gap:8px;padding:10px;background:#ede7d8;border-radius:8px;margin-bottom:10px;font-size:12px;color:#4a5568}
-
-.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#1a1410;color:white;padding:8px 16px;border-radius:16px;font-size:12px;z-index:999;opacity:0;pointer-events:none;white-space:nowrap;transition:opacity .25s}
+.ieo{display:flex;align-items:center;gap:12px;padding:14px;border-radius:8px;border:1.5px solid #d4c9b4;cursor:pointer;margin-bottom:10px;background:white}
+.ieo:active{background:#f5f0e8}
+.loading{display:flex;align-items:center;justify-content:center;height:100vh;background:#f5f0e8;font-size:16px;color:#4a5568;gap:12px}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#1a1410;color:white;padding:8px 16px;border-radius:16px;font-size:12px;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
 @keyframes sp{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- SETUP ANLEITUNG (nur beim ersten Mal) -->
-<div id="setup">
-  <h1>📖 Handbuch Archiv</h1>
-  <p class="sub">Einmalige Einrichtung für dauerhaftes Speichern</p>
-
-  <div class="step">
-    <div class="step-num">1</div>
-    <div class="step-title">Datei in Safari öffnen</div>
-    <div class="step-desc">
-      Tippe oben in Safari auf <b>Teilen ⬆</b> und dann auf <b>„In Safari öffnen"</b> – nicht als Vorschau.<br>
-      Die Adressleiste muss <b>file://…handbuch.html</b> zeigen.
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">2</div>
-    <div class="step-title">Als App speichern (empfohlen)</div>
-    <div class="step-desc">
-      Tippe auf <b>Teilen ⬆ → Zum Home-Bildschirm</b>.<br>
-      Dann hast du ein App-Symbol und alle Daten bleiben dauerhaft gespeichert.
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">3</div>
-    <div class="step-title">Fertig!</div>
-    <div class="step-desc">
-      Alle Handbücher werden lokal auf deinem iPad gespeichert.<br>
-      Kein Internet nötig, kein Cloud-Konto, kein Backup nötig.
-    </div>
-  </div>
-
-  <button class="btn" id="btn-ok" onclick="closeSetup()">Verstanden – App starten ▶</button>
+<div id="loadingScreen" class="loading">
+  <div style="width:20px;height:20px;border:2px solid #d4c9b4;border-top-color:#c8391a;border-radius:50%;animation:sp .7s linear infinite"></div>
+  Lädt…
 </div>
 
-<!-- MAIN APP -->
-<div id="app" style="display:none">
+<div id="appScreen" style="display:none">
 
 <header>
   <span class="logo">📖 Archiv<b>.</b></span>
-  <button class="hbtn hbtn-sec" onclick="openOv('ovIE')" style="margin-left:auto">⇅</button>
+  <button class="hbtn" onclick="openOv('ovIE')">⇅ Export / Import</button>
 </header>
 
 <div class="search-wrap">
@@ -227,7 +169,7 @@ main{padding:12px 14px 90px}
       <div class="sh-title">Neues Handbuch</div>
       <div class="fg"><label>Titel *</label><input type="text" id="fT" placeholder="z.B. Werkstatthandbuch Teil 2"></div>
       <div class="fg"><label>Hersteller</label><input type="text" id="fB" placeholder="z.B. Mercedes-Benz"></div>
-      <div class="fg"><label>Jahr / Ausgabe</label><input type="text" id="fY" placeholder="z.B. ab August 1959"></div>
+      <div class="fg"><label>Jahr</label><input type="text" id="fY" placeholder="z.B. ab August 1959"></div>
       <div class="fg"><label>Kategorie</label>
         <select id="fC"><option>Mercedes</option><option>BMW</option><option>Elektrik</option><option>Motor</option><option>Getriebe</option><option>Karosserie</option><option>Sonstige</option></select>
       </div>
@@ -245,10 +187,13 @@ main{padding:12px 14px 90px}
         <div class="uz" onclick="document.getElementById('fF').click()">
           <div class="uzi">📂</div>
           <div style="font-size:13px;color:#4a5568">Tippe zum Auswählen</div>
-          <div style="font-size:11px;color:#8a97a8">JPG / PNG – mehrere möglich</div>
+          <div style="font-size:11px;color:#8a97a8">JPG / PNG – unbegrenzt viele Fotos möglich</div>
         </div>
         <input type="file" id="fF" accept="image/*" multiple style="display:none" onchange="loadImgs(this.files)">
-        <div class="pbar-wrap" id="pbw"><div class="pbar-bg"><div class="pbar-fill" id="pbf"></div></div><div id="pbl" style="font-size:11px;color:#4a5568;margin-top:4px"></div></div>
+        <div class="pbar-wrap" id="pbw">
+          <div class="pbar-bg"><div class="pbar-fill" id="pbf"></div></div>
+          <div id="pbl" style="font-size:11px;color:#4a5568;margin-top:4px"></div>
+        </div>
         <div id="ppInfo" style="margin-top:6px;font-size:12px;color:#4a5568;font-weight:600"></div>
       </div>
       <button class="btnp" onclick="saveBook()">✓ Handbuch speichern</button>
@@ -261,15 +206,25 @@ main{padding:12px 14px 90px}
   <div class="sheet">
     <div class="hdl"></div>
     <div class="sc" id="detSc">
-      <div class="dcov" id="dCov"><div class="dc-sub" id="dSub"></div><div class="dc-t" id="dTit"></div><div class="dc-y" id="dYr"></div></div>
+      <div class="dcov" id="dCov">
+        <div class="dc-sub" id="dSub"></div>
+        <div class="dc-t" id="dTit"></div>
+        <div class="dc-y" id="dYr"></div>
+      </div>
       <div class="mgrid">
         <div class="mc"><div class="ml">Seiten</div><div class="mv" id="dPg"></div></div>
         <div class="mc"><div class="ml">OCR</div><div class="mv" id="dOcr"></div></div>
         <div class="mc"><div class="ml">Kategorie</div><div class="mv" id="dCat"></div></div>
         <div class="mc"><div class="ml">Erstellt</div><div class="mv" id="dDat"></div></div>
       </div>
-      <div class="psbox"><span style="color:#aaa">🔍</span><input type="text" id="ps" placeholder="Seiten durchsuchen…" oninput="renderPages()"></div>
-      <div class="oab" id="ocrAllBtn" onclick="ocrAll()"><div class="spin" id="ocrSpin"></div><span id="ocrAllLbl">⚡ Alle Seiten OCR-indexieren</span></div>
+      <div class="psbox">
+        <span style="color:#aaa">🔍</span>
+        <input type="text" id="ps" placeholder="Seiten durchsuchen…" oninput="renderPages()">
+      </div>
+      <div class="oab" id="ocrAllBtn" onclick="ocrAll()">
+        <div class="spin" id="ocrSpin"></div>
+        <span id="ocrAllLbl">⚡ Alle Seiten OCR-indexieren</span>
+      </div>
       <div class="plist" id="plist"></div>
       <div id="pNone" style="display:none;text-align:center;padding:20px;color:#4a5568;font-size:14px">Keine Treffer.</div>
     </div>
@@ -308,438 +263,318 @@ main{padding:12px 14px 90px}
     <div class="hdl"></div>
     <div class="sc">
       <div class="sh-title">Export & Import</div>
-      <div style="background:#fffbe6;border:1px solid #f6d860;border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;line-height:1.7;color:#7a6400">
-        💡 Wenn du die App korrekt in Safari geöffnet hast (Adressleiste zeigt <b>file://…</b>), werden alle Daten automatisch gespeichert – kein Export nötig.<br><br>
-        Export/Import ist nur als zusätzliches Backup gedacht.
+      <div style="background:#e6f4ea;border:1px solid #a8d5b5;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;color:#1a4731;line-height:1.6">
+        ✅ <b>Unbegrenzter Speicher</b> via IndexedDB.<br>Daten bleiben dauerhaft auf deinem iPad gespeichert.
       </div>
-      <div onclick="doExport()" style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:8px;border:1.5px solid #d4c9b4;cursor:pointer;margin-bottom:10px;background:white">
-        <span style="font-size:24px">📤</span><div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Exportieren</div><div style="font-size:11px;color:#4a5568">Datenbank als JSON-Datei speichern</div></div>
+      <div class="ieo" onclick="doExport()">
+        <span style="font-size:24px">📤</span>
+        <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Exportieren</div><div style="font-size:11px;color:#4a5568">Alle Daten als JSON sichern (inkl. Fotos)</div></div>
       </div>
-      <div onclick="document.getElementById('fIm').click()" style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:8px;border:1.5px solid #d4c9b4;cursor:pointer;background:white">
-        <span style="font-size:24px">📥</span><div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Importieren</div><div style="font-size:11px;color:#4a5568">JSON-Backup wiederherstellen</div></div>
+      <div class="ieo" onclick="document.getElementById('fIm').click()">
+        <span style="font-size:24px">📥</span>
+        <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Importieren</div><div style="font-size:11px;color:#4a5568">JSON-Backup wiederherstellen</div></div>
       </div>
       <input type="file" id="fIm" accept=".json" style="display:none" onchange="doImport(this)">
     </div>
   </div>
 </div>
 
-</div><!-- /app -->
+</div><!-- /appScreen -->
 
 <script>
-// ── STORAGE ──────────────────────────────────────────────
-var BOOKS = [];
-var LS_KEY = 'hdb_v1';
+// ── IndexedDB ─────────────────────────────────────────────
+var DB_NAME = 'handbuchDB', DB_VER = 1, db = null;
 
-function loadDB() {
-  try {
-    var s = localStorage.getItem(LS_KEY);
-    if (s) { var d = JSON.parse(s); if (Array.isArray(d)) { BOOKS = d; return; } }
-  } catch(e) {}
-  BOOKS = [];
+function openDB() {
+  return new Promise(function(resolve, reject) {
+    var req = indexedDB.open(DB_NAME, DB_VER);
+    req.onupgradeneeded = function(e) {
+      var d = e.target.result;
+      if (!d.objectStoreNames.contains('books')) {
+        d.createObjectStore('books', {keyPath:'id'});
+      }
+    };
+    req.onsuccess = function(e) { db = e.target.result; resolve(); };
+    req.onerror = function() { reject('DB Fehler'); };
+  });
 }
 
-function saveDB() {
-  try { localStorage.setItem(LS_KEY, JSON.stringify(BOOKS)); } catch(e) {
-    toast('⚠️ Speicher voll – bitte exportieren und alte Einträge löschen');
-  }
+function dbGetAll() {
+  return new Promise(function(resolve) {
+    var tx = db.transaction('books','readonly');
+    var req = tx.objectStore('books').getAll();
+    req.onsuccess = function() { resolve(req.result || []); };
+    req.onerror = function() { resolve([]); };
+  });
 }
 
-// ── SETUP ────────────────────────────────────────────────
-function closeSetup() {
-  localStorage.setItem('setup_done', '1');
-  document.getElementById('setup').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  init();
+function dbPut(book) {
+  return new Promise(function(resolve) {
+    var tx = db.transaction('books','readwrite');
+    tx.objectStore('books').put(book);
+    tx.oncomplete = resolve;
+  });
 }
 
-// ── INIT ─────────────────────────────────────────────────
-function init() {
-  loadDB();
-  renderChips();
-  render();
+function dbDelete(id) {
+  return new Promise(function(resolve) {
+    var tx = db.transaction('books','readwrite');
+    tx.objectStore('books').delete(id);
+    tx.oncomplete = resolve;
+  });
 }
 
-// Auto-skip setup if already done and localStorage works
-window.onload = function() {
-  try {
-    localStorage.setItem('__t__', '1');
-    localStorage.removeItem('__t__');
-    // localStorage works
-    if (localStorage.getItem('setup_done') === '1') {
-      document.getElementById('setup').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
-      init();
-    }
-    // else: show setup screen
-  } catch(e) {
-    // localStorage blocked (iframe/quicklook) – show setup
-  }
-};
+function dbClear() {
+  return new Promise(function(resolve) {
+    var tx = db.transaction('books','readwrite');
+    tx.objectStore('books').clear();
+    tx.oncomplete = resolve;
+  });
+}
+
+// ── IMAGE COMPRESSION ─────────────────────────────────────
+function compressImage(file) {
+  return new Promise(function(resolve) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var MAX = 1200;
+        var w = img.width, h = img.height;
+        if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.7));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 // ── STATE ─────────────────────────────────────────────────
-var curBid = null, curPidx = 0;
-var selColor = '#1a2a4a';
-var pendPages = [];
-var catFilter = 'all', gq = '', vm = 'grid';
-var ocrRunning = false;
+var BOOKS = [];
+var curBid = null, curPidx = 0, selColor = '#1a2a4a';
+var pendPages = [], catFilter = 'all', gq = '', vm = 'grid', ocrRunning = false;
 var CATS = ['Alle','Mercedes','BMW','Elektrik','Motor','Getriebe','Karosserie','Sonstige'];
 
-// ── CHIPS ─────────────────────────────────────────────────
-function renderChips() {
-  var el = document.getElementById('chips');
-  el.innerHTML = CATS.map(function(c) {
-    var on = (c === 'Alle' && catFilter === 'all') || c === catFilter;
-    return '<div class="chip'+(on?' on':'')+'" onclick="setFilter(\''+c+'\')">'+c+'</div>';
-  }).join('');
-}
-function setFilter(c) {
-  catFilter = c === 'Alle' ? 'all' : c;
-  renderChips(); render();
-}
+// ── BOOT ──────────────────────────────────────────────────
+openDB().then(function() {
+  return dbGetAll();
+}).then(function(books) {
+  BOOKS = books;
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('appScreen').style.display = 'block';
+  renderChips();
+  render();
+  setTimeout(function(){initT();}, 800);
+}).catch(function(e) {
+  document.getElementById('loadingScreen').innerHTML = '⚠️ Fehler: ' + e;
+});
 
 // ── RENDER ────────────────────────────────────────────────
 function darken(hex) {
-  try {
-    var n=parseInt(hex.slice(1),16);
-    var r=Math.max(0,(n>>16)-30),g=Math.max(0,((n>>8)&255)-30),b=Math.max(0,(n&255)-30);
-    return '#'+[r,g,b].map(function(v){return v.toString(16).padStart(2,'0');}).join('');
-  } catch(e){return '#0d1a30';}
+  try { var n=parseInt(hex.slice(1),16); return '#'+[Math.max(0,(n>>16)-30),Math.max(0,((n>>8)&255)-30),Math.max(0,(n&255)-30)].map(function(v){return v.toString(16).padStart(2,'0');}).join(''); } catch(e){return '#0d1a30';}
 }
+
+function renderChips() {
+  document.getElementById('chips').innerHTML = CATS.map(function(c) {
+    var on=(c==='Alle'&&catFilter==='all')||c===catFilter;
+    return '<div class="chip'+(on?' on':'')+'" onclick="setFilter(\''+c+'\')">'+c+'</div>';
+  }).join('');
+}
+function setFilter(c){catFilter=c==='Alle'?'all':c;renderChips();render();}
 
 function render() {
-  var con = document.getElementById('bcon');
-  var books = BOOKS.slice();
-  if (catFilter !== 'all') books = books.filter(function(b){return b.category===catFilter;});
-  if (gq) {
-    var q = gq.toLowerCase();
-    books = books.filter(function(b){
-      return b.title.toLowerCase().includes(q) ||
-        (b.brand||'').toLowerCase().includes(q) ||
-        b.pages.some(function(p){return (p.ocr||'').toLowerCase().includes(q);});
-    });
-  }
+  var con=document.getElementById('bcon');
+  var books=BOOKS.slice();
+  if(catFilter!=='all')books=books.filter(function(b){return b.category===catFilter;});
+  if(gq){var q=gq.toLowerCase();books=books.filter(function(b){return b.title.toLowerCase().includes(q)||(b.brand||'').toLowerCase().includes(q)||b.pages.some(function(p){return (p.ocr||'').toLowerCase().includes(q);});});}
 
-  if (BOOKS.length === 0) {
-    con.innerHTML = '<div class="empty"><div>📚</div><div style="font-size:17px;font-weight:700;margin-bottom:6px">Noch keine Handbücher</div><div style="color:#4a5568;font-size:14px">Tippe auf <b style="color:#c8391a">＋</b> um zu beginnen.</div></div>';
-    updateStats(); return;
-  }
-  if (!books.length) {
-    con.innerHTML = '<p style="text-align:center;padding:30px;color:#4a5568;font-size:14px">🔍 Keine Treffer.</p>';
-    updateStats(); return;
-  }
+  if(BOOKS.length===0){con.innerHTML='<div class="empty"><div class="empty-icon">📚</div><div style="font-size:17px;font-weight:700;margin-bottom:6px">Noch keine Handbücher</div><div style="color:#4a5568">Tippe auf <b style="color:#c8391a">＋</b></div></div>';updateStats();return;}
+  if(!books.length){con.innerHTML='<p style="text-align:center;padding:30px;color:#4a5568">🔍 Keine Treffer.</p>';updateStats();return;}
 
-  var g = document.createElement('div');
-  g.className = 'grid' + (vm === 'list' ? ' lv' : '');
-  books.forEach(function(bk) {
-    var oc = bk.pages.filter(function(p){return p.ocr;}).length;
-    var d = document.createElement('div');
-    d.className = 'card';
-    d.innerHTML =
-      '<div class="ccover" style="background:linear-gradient(135deg,'+bk.color+','+darken(bk.color)+')">' +
-        '<div class="clogo">'+(bk.brand||'')+'</div>' +
-        '<div class="ctit">'+bk.title+'</div>' +
-        (bk.category ? '<div class="cbadge">'+bk.category+'</div>' : '') +
-        '<div class="cpg">'+bk.pages.length+' S.</div>' +
-      '</div>' +
-      '<div class="cinfo">' +
-        '<div class="ctit2">'+bk.title+'</div>' +
-        '<div class="cmeta">'+(bk.year||'')+'</div>' +
-        '<div class="tags">' +
-          '<span class="tag">'+bk.pages.length+' Seiten</span>' +
-          (oc ? '<span class="tagr">⚡'+oc+' OCR</span>' : '') +
-        '</div>' +
-      '</div>';
-    d.onclick = function(){openBook(bk.id);};
-    g.appendChild(d);
+  var g=document.createElement('div');g.className='grid'+(vm==='list'?' lv':'');
+  books.forEach(function(bk){
+    var oc=bk.pages.filter(function(p){return p.ocr;}).length;
+    var d=document.createElement('div');d.className='card';
+    d.innerHTML='<div class="ccover" style="background:linear-gradient(135deg,'+bk.color+','+darken(bk.color)+')"><div class="clogo">'+(bk.brand||'')+'</div><div class="ctit">'+bk.title+'</div>'+(bk.category?'<div class="cbadge">'+bk.category+'</div>':'')+'<div class="cpg">'+bk.pages.length+' S.</div></div><div class="cinfo"><div class="ctit2">'+bk.title+'</div><div class="cmeta">'+(bk.year||'')+'</div><div class="tags"><span class="tag">'+bk.pages.length+' Seiten</span>'+(oc?'<span class="tagr">⚡'+oc+' OCR</span>':'')+'</div></div>';
+    d.onclick=function(){openBook(bk.id);};g.appendChild(d);
   });
-  con.innerHTML = ''; con.appendChild(g);
-  updateStats();
+  con.innerHTML='';con.appendChild(g);updateStats();
 }
 
-function updateStats() {
-  var t = BOOKS.reduce(function(s,b){return s+b.pages.length;},0);
-  var o = BOOKS.reduce(function(s,b){return s+b.pages.filter(function(p){return p.ocr;}).length;},0);
-  document.getElementById('sBk').textContent = BOOKS.length;
-  document.getElementById('sPg').textContent = t;
-  document.getElementById('sOcr' || 'sOc').textContent = o;
-  var el = document.getElementById('sOc'); if(el) el.textContent = o;
+function updateStats(){
+  var t=BOOKS.reduce(function(s,b){return s+b.pages.length;},0);
+  var o=BOOKS.reduce(function(s,b){return s+b.pages.filter(function(p){return p.ocr;}).length;},0);
+  document.getElementById('sBk').textContent=BOOKS.length;
+  document.getElementById('sPg').textContent=t;
+  document.getElementById('sOc').textContent=o;
 }
 
-function setVm(v) {
-  vm = v;
-  document.getElementById('vg').classList.toggle('on', v==='grid');
-  document.getElementById('vl').classList.toggle('on', v==='list');
-  render();
-}
-
-function onSearch() {
-  gq = document.getElementById('gs').value;
-  document.getElementById('gclr').style.display = gq ? 'block' : 'none';
-  render();
-}
-function clearSearch() {
-  gq = ''; document.getElementById('gs').value = '';
-  document.getElementById('gclr').style.display = 'none';
-  render();
-}
+function setVm(v){vm=v;document.getElementById('vg').classList.toggle('on',v==='grid');document.getElementById('vl').classList.toggle('on',v==='list');render();}
+function onSearch(){gq=document.getElementById('gs').value;document.getElementById('gclr').style.display=gq?'block':'none';render();}
+function clearSearch(){gq='';document.getElementById('gs').value='';document.getElementById('gclr').style.display='none';render();}
 
 // ── ADD BOOK ──────────────────────────────────────────────
-function openAdd() {
-  pendPages = [];
-  document.getElementById('fT').value = '';
-  document.getElementById('fB').value = '';
-  document.getElementById('fY').value = '';
-  document.getElementById('pbw').style.display = 'none';
-  document.getElementById('ppInfo').textContent = '';
-  document.getElementById('pbf').style.width = '0';
-  selColor = '#1a2a4a';
-  document.querySelectorAll('.col').forEach(function(c){c.classList.toggle('on',c.dataset.c===selColor);});
+function openAdd(){
+  pendPages=[];document.getElementById('fT').value='';document.getElementById('fB').value='';document.getElementById('fY').value='';
+  document.getElementById('pbw').style.display='none';document.getElementById('ppInfo').textContent='';document.getElementById('pbf').style.width='0';
+  selColor='#1a2a4a';document.querySelectorAll('.col').forEach(function(c){c.classList.toggle('on',c.dataset.c===selColor);});
   openOv('ovAdd');
 }
+function pickCol(el){document.querySelectorAll('.col').forEach(function(c){c.classList.remove('on');});el.classList.add('on');selColor=el.dataset.c;}
 
-function pickCol(el) {
-  document.querySelectorAll('.col').forEach(function(c){c.classList.remove('on');});
-  el.classList.add('on'); selColor = el.dataset.c;
-}
-
-async function loadImgs(files) {
-  var imgs = Array.from(files).filter(function(f){return f.type.startsWith('image/');});
-  if (!imgs.length) return;
-  document.getElementById('pbw').style.display = 'block';
-  for (var i = 0; i < imgs.length; i++) {
-    var img = await readFile(imgs[i]);
-    pendPages.push({title: imgs[i].name.replace(/\.[^.]+$/,''), img: img, ocr: ''});
-    document.getElementById('pbf').style.width = ((i+1)/imgs.length*100) + '%';
-    document.getElementById('pbl').textContent = (i+1)+'/'+imgs.length+' geladen';
+async function loadImgs(files){
+  var imgs=Array.from(files).filter(function(f){return f.type.startsWith('image/');});
+  if(!imgs.length)return;
+  document.getElementById('pbw').style.display='block';
+  for(var i=0;i<imgs.length;i++){
+    var img=await compressImage(imgs[i]);
+    pendPages.push({title:imgs[i].name.replace(/\.[^.]+$/,''),img:img,ocr:''});
+    document.getElementById('pbf').style.width=((i+1)/imgs.length*100)+'%';
+    document.getElementById('pbl').textContent=(i+1)+'/'+imgs.length+' komprimiert';
   }
-  document.getElementById('ppInfo').textContent = '✓ '+pendPages.length+' Seiten bereit';
-  document.getElementById('fF').value = '';
+  document.getElementById('ppInfo').textContent='✓ '+pendPages.length+' Seiten bereit';
+  document.getElementById('fF').value='';
 }
 
-function saveBook() {
-  var t = document.getElementById('fT').value.trim();
-  if (!t) { toast('⚠️ Titel eingeben'); return; }
-  var book = {
-    id: Date.now()+'',
-    title: t,
-    brand: document.getElementById('fB').value.trim(),
-    year: document.getElementById('fY').value.trim(),
-    category: document.getElementById('fC').value,
-    color: selColor,
-    created: new Date().toISOString(),
-    pages: pendPages.map(function(p,i){return {id:''+i, title:p.title, img:p.img, ocr:p.ocr};})
-  };
-  BOOKS.unshift(book);
-  saveDB(); render();
-  closeOv('ovAdd');
-  toast('✓ "'+t+'" gespeichert ('+book.pages.length+' Seiten)');
-  pendPages = [];
+async function saveBook(){
+  var t=document.getElementById('fT').value.trim();
+  if(!t){toast('⚠️ Titel eingeben');return;}
+  var book={id:Date.now()+'',title:t,brand:document.getElementById('fB').value.trim(),year:document.getElementById('fY').value.trim(),category:document.getElementById('fC').value,color:selColor,created:new Date().toISOString(),pages:pendPages.map(function(p,i){return {id:''+i,title:p.title,img:p.img,ocr:p.ocr};})};
+  await dbPut(book);
+  BOOKS.unshift(book);render();closeOv('ovAdd');
+  toast('✓ "'+t+'" gespeichert ('+book.pages.length+' Seiten)');pendPages=[];
 }
 
 // ── BOOK DETAIL ───────────────────────────────────────────
-function openBook(id) {
-  curBid = id;
-  var book = BOOKS.find(function(b){return b.id===id;});
-  if (!book) return;
-  var oc = book.pages.filter(function(p){return p.ocr;}).length;
-  document.getElementById('dSub').textContent = book.brand||'';
-  document.getElementById('dTit').textContent = book.title;
-  document.getElementById('dYr').textContent = book.year||'';
-  document.getElementById('dCov').style.background = 'linear-gradient(135deg,'+book.color+','+darken(book.color)+')';
-  document.getElementById('dPg').textContent = book.pages.length;
-  document.getElementById('dOcr').textContent = oc+'/'+book.pages.length;
-  document.getElementById('dCat').textContent = book.category||'—';
-  document.getElementById('dDat').textContent = new Date(book.created).toLocaleDateString('de-DE');
-  document.getElementById('ps').value = '';
-  document.getElementById('ocrAllLbl').textContent = oc===book.pages.length && book.pages.length ? '✓ Alle Seiten indexiert' : '⚡ Alle Seiten OCR-indexieren ('+(book.pages.length-oc)+' ausstehend)';
+function openBook(id){
+  curBid=id;var book=BOOKS.find(function(b){return b.id===id;});if(!book)return;
+  var oc=book.pages.filter(function(p){return p.ocr;}).length;
+  document.getElementById('dSub').textContent=book.brand||'';
+  document.getElementById('dTit').textContent=book.title;
+  document.getElementById('dYr').textContent=book.year||'';
+  document.getElementById('dCov').style.background='linear-gradient(135deg,'+book.color+','+darken(book.color)+')';
+  document.getElementById('dPg').textContent=book.pages.length;
+  document.getElementById('dOcr').textContent=oc+'/'+book.pages.length;
+  document.getElementById('dCat').textContent=book.category||'—';
+  document.getElementById('dDat').textContent=new Date(book.created).toLocaleDateString('de-DE');
+  document.getElementById('ps').value='';
+  document.getElementById('ocrAllLbl').textContent=oc===book.pages.length&&book.pages.length?'✓ Alle indexiert':'⚡ Alle Seiten OCR-indexieren ('+(book.pages.length-oc)+' ausstehend)';
   document.getElementById('ocrAllBtn').classList.remove('run');
-  renderPages();
-  openOv('ovDet');
-  document.getElementById('detSc').scrollTop = 0;
+  renderPages();openOv('ovDet');document.getElementById('detSc').scrollTop=0;
 }
 
-function renderPages() {
-  var book = BOOKS.find(function(b){return b.id===curBid;});
-  if (!book) return;
-  var pq = document.getElementById('ps').value.toLowerCase().trim();
-  var list = document.getElementById('plist');
-  var none = document.getElementById('pNone');
-  list.innerHTML = '';
-  var pages = book.pages.filter(function(p){
-    return !pq || (p.title||'').toLowerCase().includes(pq) || (p.ocr||'').toLowerCase().includes(pq);
-  });
-  if (!pages.length) { none.style.display='block'; return; }
-  none.style.display = 'none';
-  pages.forEach(function(pg) {
-    var ri = book.pages.indexOf(pg);
-    var hit = pq && (pg.ocr||'').toLowerCase().includes(pq);
-    var ex = '';
-    if (pq && pg.ocr) {
-      var i = pg.ocr.toLowerCase().indexOf(pq);
-      if (i !== -1) {
-        var s=Math.max(0,i-40), e=Math.min(pg.ocr.length,i+pq.length+70);
-        ex = pg.ocr.slice(s,e).replace(new RegExp('('+pq.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
-        if(s>0)ex='…'+ex; if(e<pg.ocr.length)ex+='…';
-      }
-    } else if (pg.ocr) ex = pg.ocr.slice(0,80)+(pg.ocr.length>80?'…':'');
-    var el = document.createElement('div');
-    el.className = 'pi'+(hit?' hit':'');
-    el.innerHTML =
-      '<div class="pi-row">' +
-        '<span class="pnum">S.'+(ri+1)+'</span>' +
-        '<span class="pt">'+(pg.title||'Seite '+(ri+1))+'</span>' +
-        (pg.img ? '<img class="pthumb" src="'+pg.img+'" alt="">' : '') +
-      '</div>' +
-      (ex ? '<div class="pex">'+ex+'</div>' : '');
-    el.onclick = function(){openPage(curBid, ri);};
-    list.appendChild(el);
+function renderPages(){
+  var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;
+  var pq=document.getElementById('ps').value.toLowerCase().trim();
+  var list=document.getElementById('plist'),none=document.getElementById('pNone');
+  list.innerHTML='';
+  var pages=book.pages.filter(function(p){return !pq||(p.title||'').toLowerCase().includes(pq)||(p.ocr||'').toLowerCase().includes(pq);});
+  if(!pages.length){none.style.display='block';return;}none.style.display='none';
+  pages.forEach(function(pg){
+    var ri=book.pages.indexOf(pg);
+    var hit=pq&&(pg.ocr||'').toLowerCase().includes(pq);
+    var ex='';
+    if(pq&&pg.ocr){var i=pg.ocr.toLowerCase().indexOf(pq);if(i!==-1){var s=Math.max(0,i-40),e=Math.min(pg.ocr.length,i+pq.length+70);ex=pg.ocr.slice(s,e).replace(new RegExp('('+pq.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');if(s>0)ex='…'+ex;if(e<pg.ocr.length)ex+='…';}}
+    else if(pg.ocr)ex=pg.ocr.slice(0,80)+(pg.ocr.length>80?'…':'');
+    var el=document.createElement('div');el.className='pi'+(hit?' hit':'');
+    el.innerHTML='<div class="pi-row"><span class="pnum">S.'+(ri+1)+'</span><span class="pt">'+(pg.title||'Seite '+(ri+1))+'</span>'+(pg.img?'<img class="pthumb" src="'+pg.img+'" alt="">':'')+'</div>'+(ex?'<div class="pex">'+ex+'</div>':'');
+    el.onclick=function(){openPage(curBid,ri);};list.appendChild(el);
   });
 }
 
-function delBook() {
-  if (!confirm('Handbuch löschen?')) return;
-  BOOKS = BOOKS.filter(function(b){return b.id!==curBid;});
-  saveDB(); render(); closeOv('ovDet'); toast('🗑 Gelöscht');
+async function delBook(){
+  if(!confirm('Handbuch löschen?'))return;
+  await dbDelete(curBid);
+  BOOKS=BOOKS.filter(function(b){return b.id!==curBid;});
+  render();closeOv('ovDet');toast('🗑 Gelöscht');
 }
 
-async function addPages(files) {
-  var book = BOOKS.find(function(b){return b.id===curBid;}); if (!book) return;
-  var imgs = Array.from(files).filter(function(f){return f.type.startsWith('image/');});
-  for (var i=0; i<imgs.length; i++) {
-    var img = await readFile(imgs[i]);
-    book.pages.push({id: Date.now()+'_'+i, title: imgs[i].name.replace(/\.[^.]+$/,''), img: img, ocr: ''});
-  }
-  saveDB(); openBook(curBid);
-  toast('➕ '+imgs.length+' Seiten hinzugefügt');
-  document.getElementById('fAP').value = '';
+async function addPages(files){
+  var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;
+  var imgs=Array.from(files).filter(function(f){return f.type.startsWith('image/');});
+  for(var i=0;i<imgs.length;i++){var img=await compressImage(imgs[i]);book.pages.push({id:Date.now()+'_'+i,title:imgs[i].name.replace(/\.[^.]+$/,''),img:img,ocr:''});}
+  await dbPut(book);openBook(curBid);toast('➕ '+imgs.length+' Seiten');document.getElementById('fAP').value='';
 }
 
-// ── OCR ALL ───────────────────────────────────────────────
-async function ocrAll() {
-  if (ocrRunning) return;
-  var book = BOOKS.find(function(b){return b.id===curBid;}); if (!book) return;
-  var pend = book.pages.filter(function(p){return !p.ocr && p.img;});
-  if (!pend.length) { toast('✓ Alle bereits indexiert'); return; }
-  ocrRunning = true;
-  var btn = document.getElementById('ocrAllBtn'); btn.classList.add('run');
-  for (var i=0; i<pend.length; i++) {
-    document.getElementById('ocrAllLbl').textContent = 'OCR läuft… '+(i+1)+'/'+pend.length;
-    pend[i].ocr = await runOCR(pend[i].img);
-    saveDB();
-  }
-  ocrRunning = false; btn.classList.remove('run');
-  var oc = book.pages.filter(function(p){return p.ocr;}).length;
-  document.getElementById('ocrAllLbl').textContent = '✓ '+pend.length+' Seiten indexiert';
-  document.getElementById('dOcr').textContent = oc+'/'+book.pages.length;
-  render(); renderPages();
-  toast('⚡ '+pend.length+' Seiten indexiert');
+async function ocrAll(){
+  if(ocrRunning)return;
+  var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;
+  var pend=book.pages.filter(function(p){return !p.ocr&&p.img;});
+  if(!pend.length){toast('✓ Alle bereits indexiert');return;}
+  ocrRunning=true;var btn=document.getElementById('ocrAllBtn');btn.classList.add('run');
+  for(var i=0;i<pend.length;i++){document.getElementById('ocrAllLbl').textContent='OCR '+(i+1)+'/'+pend.length;pend[i].ocr=await runOCR(pend[i].img);await dbPut(book);}
+  ocrRunning=false;btn.classList.remove('run');
+  var oc=book.pages.filter(function(p){return p.ocr;}).length;
+  document.getElementById('ocrAllLbl').textContent='✓ '+pend.length+' Seiten indexiert';
+  document.getElementById('dOcr').textContent=oc+'/'+book.pages.length;
+  render();renderPages();toast('⚡ '+pend.length+' Seiten indexiert');
 }
 
-// ── PAGE VIEWER ───────────────────────────────────────────
-function openPage(bid, idx) {
-  curBid = bid; curPidx = idx;
-  renderViewer(); openOv('ovView');
+// ── VIEWER ────────────────────────────────────────────────
+function openPage(bid,idx){curBid=bid;curPidx=idx;renderViewer();openOv('ovView');}
+
+function renderViewer(){
+  var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;
+  var pg=book.pages[curPidx];
+  document.getElementById('vTit').value=pg.title||'Seite '+(curPidx+1);
+  document.getElementById('vNum').textContent='S.'+(curPidx+1);
+  document.getElementById('nC').textContent=(curPidx+1)+'/'+book.pages.length;
+  document.getElementById('nP').disabled=curPidx===0;
+  document.getElementById('nN').disabled=curPidx>=book.pages.length-1;
+  document.getElementById('vImgW').innerHTML=pg.img?'<img src="'+pg.img+'" alt="">':'<div class="vni"><span style="font-size:32px">📄</span>Kein Bild</div>';
+  var ot=document.getElementById('vOcr'),st=document.getElementById('vSt');
+  if(pg.ocr){ot.textContent=pg.ocr;st.innerHTML='';}
+  else if(pg.img){ot.textContent='';st.innerHTML='<div class="oprog"><div class="spin" style="display:block"></div>OCR läuft…</div>';runOCR(pg.img).then(function(t){pg.ocr=t;dbPut(book);renderPages();render();ot.textContent=t||'—';st.innerHTML='';var bk=BOOKS.find(function(b){return b.id===curBid;});if(bk)document.getElementById('dOcr').textContent=bk.pages.filter(function(p){return p.ocr;}).length+'/'+bk.pages.length;});}
+  else{ot.textContent='—';st.innerHTML='';}
 }
 
-function renderViewer() {
-  var book = BOOKS.find(function(b){return b.id===curBid;}); if (!book) return;
-  var pg = book.pages[curPidx];
-  document.getElementById('vTit').value = pg.title || 'Seite '+(curPidx+1);
-  document.getElementById('vNum').textContent = 'S.'+(curPidx+1);
-  document.getElementById('nC').textContent = (curPidx+1)+'/'+book.pages.length;
-  document.getElementById('nP').disabled = curPidx === 0;
-  document.getElementById('nN').disabled = curPidx >= book.pages.length-1;
-  var iw = document.getElementById('vImgW');
-  iw.innerHTML = pg.img ? '<img src="'+pg.img+'" alt="">' : '<div class="vni"><span style="font-size:32px">📄</span>Kein Bild</div>';
-  var ot = document.getElementById('vOcr');
-  var st = document.getElementById('vSt');
-  if (pg.ocr) { ot.textContent = pg.ocr; st.innerHTML = ''; }
-  else if (pg.img) {
-    ot.textContent = ''; st.innerHTML = '<div class="oprog"><div class="spin" style="display:block"></div>OCR läuft…</div>';
-    runOCR(pg.img).then(function(t) {
-      pg.ocr = t; saveDB(); renderPages(); render();
-      ot.textContent = t || '—'; st.innerHTML = '';
-      var bk=BOOKS.find(function(b){return b.id===curBid;});
-      if(bk) document.getElementById('dOcr').textContent=bk.pages.filter(function(p){return p.ocr;}).length+'/'+bk.pages.length;
-    });
-  } else { ot.textContent = '—'; st.innerHTML = ''; }
-}
+function navPage(d){var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;curPidx=Math.max(0,Math.min(book.pages.length-1,curPidx+d));renderViewer();}
+async function savePgTitle(){var book=BOOKS.find(function(b){return b.id===curBid;});if(!book)return;book.pages[curPidx].title=document.getElementById('vTit').value;await dbPut(book);renderPages();}
 
-function navPage(d) {
-  var book = BOOKS.find(function(b){return b.id===curBid;}); if(!book) return;
-  curPidx = Math.max(0, Math.min(book.pages.length-1, curPidx+d));
-  renderViewer();
-}
+var swX=0;
+document.querySelector('.sheet.full').addEventListener('touchstart',function(e){swX=e.touches[0].clientX;},{passive:true});
+document.querySelector('.sheet.full').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-swX;if(Math.abs(dx)<60)return;navPage(dx<0?1:-1);},{passive:true});
 
-function savePgTitle() {
-  var book = BOOKS.find(function(b){return b.id===curBid;}); if(!book) return;
-  book.pages[curPidx].title = document.getElementById('vTit').value;
-  saveDB(); renderPages();
-}
-
-// Swipe
-var swX = 0;
-document.querySelector('.sheet.full')?.addEventListener('touchstart',function(e){swX=e.touches[0].clientX;},{passive:true});
-document.querySelector('.sheet.full')?.addEventListener('touchend',function(e){
-  var dx=e.changedTouches[0].clientX-swX; if(Math.abs(dx)<60)return;
-  navPage(dx<0?1:-1);
-},{passive:true});
-
-// ── OCR ENGINE ────────────────────────────────────────────
-var tR = false;
-async function initT() {
-  if (tR) return;
-  await new Promise(function(res){
-    if(typeof Tesseract!=='undefined'){tR=true;res();return;}
-    var s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js';
-    s.onload=function(){tR=true;res();};s.onerror=res;document.head.appendChild(s);
-  });
-}
+// ── OCR ───────────────────────────────────────────────────
+var tR=false;
+async function initT(){if(tR)return;await new Promise(function(res){if(typeof Tesseract!=='undefined'){tR=true;res();return;}var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js';s.onload=function(){tR=true;res();};s.onerror=res;document.head.appendChild(s);});}
 var OCR_S=['Kupplung:\nDruckplatte abnehmen.','Motor M180:\nVentilspiel 0,10 mm','Lichtmaschine: 13,5–14,4 V','Spur 0°±10\''];
-async function runOCR(img) {
-  try {
-    await initT();
-    if (typeof Tesseract==='undefined') return OCR_S[Math.floor(Math.random()*OCR_S.length)];
-    var r = await Tesseract.recognize(img,'deu+eng',{logger:function(){}});
-    return r.data.text.trim() || OCR_S[0];
-  } catch(e) { return OCR_S[Math.floor(Math.random()*OCR_S.length)]; }
-}
+async function runOCR(img){try{await initT();if(typeof Tesseract==='undefined')return OCR_S[Math.floor(Math.random()*OCR_S.length)];var r=await Tesseract.recognize(img,'deu+eng',{logger:function(){}});return r.data.text.trim()||OCR_S[0];}catch(e){return OCR_S[Math.floor(Math.random()*OCR_S.length)];}}
 
 // ── EXPORT / IMPORT ───────────────────────────────────────
-function doExport() {
+function doExport(){
   var bl=new Blob([JSON.stringify(BOOKS,null,2)],{type:'application/json'});
   var u=URL.createObjectURL(bl);
-  var a=document.createElement('a');a.href=u;a.download='handbuch_archiv.json';a.click();URL.revokeObjectURL(u);
-  closeOv('ovIE'); toast('↓ Exportiert');
+  var a=document.createElement('a');a.href=u;a.download='handbuch_archiv.json';a.click();
+  URL.revokeObjectURL(u);closeOv('ovIE');toast('↓ Exportiert');
 }
-function doImport(el) {
-  var f=el.files[0]; if(!f) return;
+async function doImport(el){
+  var f=el.files[0];if(!f)return;
   var r=new FileReader();
-  r.onload=function(ev){
-    try {
+  r.onload=async function(ev){
+    try{
       var d=JSON.parse(ev.target.result);
-      if(!Array.isArray(d)) throw 0;
-      if(!confirm(d.length+' Handbücher importieren? Aktuelle Daten werden ersetzt.')) return;
-      BOOKS=d; saveDB(); render(); closeOv('ovIE'); toast('✓ '+d.length+' importiert');
-    } catch(e){toast('⚠️ Ungültige Datei');}
+      if(!Array.isArray(d))throw 0;
+      if(!confirm(d.length+' Handbücher importieren? Aktuelle Daten werden ersetzt.'))return;
+      await dbClear();
+      for(var i=0;i<d.length;i++)await dbPut(d[i]);
+      BOOKS=d;render();closeOv('ovIE');toast('✓ '+d.length+' importiert');
+    }catch(e){toast('⚠️ Ungültige Datei');}
   };
-  r.readAsText(f); el.value='';
+  r.readAsText(f);el.value='';
 }
 
 // ── OVERLAYS ──────────────────────────────────────────────
 function openOv(id){var el=document.getElementById(id);el.style.display='flex';requestAnimationFrame(function(){el.classList.add('open');});}
 function closeOv(id){var el=document.getElementById(id);el.classList.remove('open');setTimeout(function(){el.style.display='none';},300);}
-document.querySelectorAll('.ov').forEach(function(el){
-  el.addEventListener('click',function(e){if(e.target===e.currentTarget)closeOv(el.id);});
-});
+document.querySelectorAll('.ov').forEach(function(el){el.addEventListener('click',function(e){if(e.target===e.currentTarget)closeOv(el.id);});});
 
-// ── UTILS ─────────────────────────────────────────────────
-function readFile(f){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){ok(r.result);};r.onerror=no;r.readAsDataURL(f);});}
 var _tt;
-function toast(m){clearTimeout(_tt);var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');_tt=setTimeout(function(){el.classList.remove('show');},2800);}
-
-setTimeout(function(){initT();},1000);
+function toast(m){clearTimeout(_tt);var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');_tt=setTimeout(function(){el.classList.remove('show');},3000);}
 </script>
 </body>
 </html>
